@@ -18,7 +18,7 @@ void Trie::addWord(const basic_string<char>& word) {
 }
 
 bool Trie::hasWord(const basic_string<char>& word) {
-    shared_ptr<Node> currentNode = root;
+    shared_ptr<Node>& currentNode = root;
     for (char character : word) {
         if (! currentNode->hasCharacter(character)) return false;
 
@@ -50,8 +50,8 @@ Trie::Trie() {
     root = make_shared<Node>(false);
 }
 
-Trie Trie::getTrieFromFile(const basic_string<char> &fileWithWords, function<bool(const string&)> isAddable) {
-    Trie trie;
+void Trie::updateTrieUsingFile(const basic_string<char> &fileWithWords, function<bool(const string &)> isAddable,
+                               Trie& trie) {
     ifstream file(fileWithWords);
     int counter = 0;
     string str;
@@ -72,5 +72,9 @@ Trie Trie::getTrieFromFile(const basic_string<char> &fileWithWords, function<boo
     if (file.is_open()) {
         file.close();
     }
-    return trie;
+}
+
+Trie::~Trie() {
+//    cout << "Destructor Called ;0 !\n";
+
 }

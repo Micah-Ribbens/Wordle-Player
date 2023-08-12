@@ -10,4 +10,6 @@ add_executable(Wordle_Player
         Trie.h
         main.cpp
         WordlePlayer.cpp
-        WordlePlayer.h)
+        WordlePlayer.h
+        WordleSimulator.cpp
+        WordleSimulator.h)

@@ -7,6 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
+#include "WordleSimulator.h"
 
 using namespace std;
 
@@ -24,5 +25,8 @@ int main() {
     wordlePlayer.update("w*rds");
     wordlePlayer.setPreviousGuess("aeoiu");
     wordlePlayer.update("--*--");
-    wordlePlayer.printIndexToValidCharacters();
+//    wordlePlayer.printIndexToValidCharacters();
+//    WordleSimulator wordleSimulator(correctedPath + "five_letter_words.txt", wordlePlayer);
+//    wordleSimulator.getNumberOfGuesses("words");
+//    cout << wordleSimulator.getResult("words", "sword");
 }

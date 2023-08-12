@@ -17,12 +17,14 @@ using namespace std;
 
 class Trie {
 public:
-    void addWord(const basic_string<char> &word);
-    bool hasWord(const basic_string<char> &word);
+    virtual void addWord(const basic_string<char> &word);
+
+    virtual bool hasWord(const basic_string<char> &word);
     vector<string> getAllWords(const basic_string<char> &letters, function<void(const string&)> actionUponFindingWord);
     vector<string> getAllWordsOfLength(int length);
-    static Trie getTrieFromFile(const basic_string<char>& fileWithWords, function<bool(const string&)> isAddable);
+    void updateTrieUsingFile(const basic_string<char>& fileWithWords, function<bool(const string&)> isAddable, Trie& trie);
     Trie();
+    ~Trie();
 
 protected:
     class Node {
@@ -42,7 +44,7 @@ protected:
 
         shared_ptr<Node> getNextNode(char &ch) { return (*children)[ch]; }
     };
-
+public:
     shared_ptr<Node> root;
 };
 
