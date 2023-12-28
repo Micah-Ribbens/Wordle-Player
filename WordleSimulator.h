@@ -17,7 +17,7 @@ using namespace std;
 class WordleSimulator {
 public:
     WordleSimulator(const string& pathToPastWordleWords, WordlePlayer& wordlePlayer);
-    void simulateAllWords();
+    void simulateAllWords(int counter=-1);
     int getNumberOfGuesses(const string& word);
     string getResult(string actualWord, string guess);
 private:

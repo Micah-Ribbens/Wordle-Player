@@ -118,8 +118,8 @@ void WordlePlayer::update(string result) {
     for (auto character : previousGuess) {
         characterToAmountInWord.emplace(character, 0);
     }
-    cout << "prev guess: " + previousGuess << endl;
-    cout << "Result " + result << endl;
+//    cout << "prev guess: " + previousGuess << endl;
+//    cout << "Result " + result << endl;
 
     for (auto character : previousGuess) {
         characterToAmountInWord[character]++;
@@ -142,7 +142,22 @@ void WordlePlayer::update(string result) {
 
         index++;
     }
-    printIndexToValidCharacters();
+
+//    indexToValidCharacters.clear();
+//    for (int i = 0; i <= 4; i++) {
+//        indexToValidCharacters[i] = vector<char>();
+//    }
+//    for (const auto& pair : validGuesses) {
+//        bool isValidGuess = pair.second;
+//
+//        if (isValidGuess) {
+//            int index2 = stoi(string(1, pair.first[1]));
+//            char character = pair.first[0];
+//            indexToValidCharacters[index2].emplace_back(character);
+//        }
+//    }
+
+//    printIndexToValidCharacters();
 }
 
 void WordlePlayer::makeAllInvalid(char character) {

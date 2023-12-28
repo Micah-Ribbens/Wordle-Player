@@ -32,8 +32,15 @@ WordleSimulator::WordleSimulator(const std::string& pathToPastWordleWords, Wordl
     }
 }
 
-void WordleSimulator::simulateAllWords() {
+void WordleSimulator::simulateAllWords(int maxCounter) {
     unordered_map<int, int> guesses; // {numberOfGuesses: number of words guessed with the amount 'numberOfGuesses'}
+
+    int defaultValue = -1;
+    if (maxCounter == defaultValue) {
+        maxCounter = pastWordleWords.size();
+    }
+
+    int counter = 0;
 
     for (const auto& word : pastWordleWords) {
         int numberOfGuesses = getNumberOfGuesses(word);
@@ -43,6 +50,12 @@ void WordleSimulator::simulateAllWords() {
         }
 
         guesses[numberOfGuesses]++;
+        counter++;
+
+        if (counter == maxCounter) {
+            break;
+        }
+        cout << numberOfGuesses << "\n";
     }
 
     string printedString = "{\n";
@@ -57,7 +70,7 @@ int WordleSimulator::getNumberOfGuesses(const string& word) {
     wordlePlayer.resetValidGuesses();
     int counter = 1;
     // If it goes longer than 50 then something is off (usual should be close to 4)
-    while (counter <= 50) {
+    while (counter < 50) {
         string bestPlay;
         try {
             bestPlay = wordlePlayer.getBestPlay();
@@ -66,18 +79,18 @@ int WordleSimulator::getNumberOfGuesses(const string& word) {
             cout << "Bad Alloc from best play!!!";
         }
         if (word == bestPlay) {
-            cout << "It guessed it in " + to_string(counter) + " guesses!";
+            cout << "It guessed it in " + to_string(counter) + " guesses!\n";
             break;
         }
         wordlePlayer.update(getResult(word, bestPlay));
-//        wordlePlayer.resetValidGuesses();
+        wordlePlayer.resetValidGuesses();
         counter++;
-        cout << getResult(word, bestPlay);
-        break;
+//        cout << getResult(word, bestPlay);
+//        break;
     }
 
-    if (counter == 50) {
-        cout << "This is bad! It should take at max 6, but usually 4";
+    if (counter >= 50) {
+        cout << "This is bad! It should take at max 6, but usually 4 \n";
     }
 
     return counter;

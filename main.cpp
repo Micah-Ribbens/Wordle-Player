@@ -21,12 +21,13 @@ int main() {
     auto isAddable = [](const string& value) { return value.length() == 5;};
 
     WordlePlayer wordlePlayer(correctedPath + "english_words.txt", isAddable);
-    wordlePlayer.setPreviousGuess("wards");
-    wordlePlayer.update("w*rds");
-    wordlePlayer.setPreviousGuess("aeoiu");
-    wordlePlayer.update("--*--");
+//    wordlePlayer.setPreviousGuess("wards");
+//    wordlePlayer.update("w*rds");
+//    wordlePlayer.setPreviousGuess("aeoiu");
+//    wordlePlayer.update("--*--");
 //    wordlePlayer.printIndexToValidCharacters();
-//    WordleSimulator wordleSimulator(correctedPath + "five_letter_words.txt", wordlePlayer);
-//    wordleSimulator.getNumberOfGuesses("words");
+    WordleSimulator wordleSimulator(correctedPath + "five_letter_words.txt", wordlePlayer);
+    wordleSimulator.simulateAllWords(3);
+//    cout << wordleSimulator.getNumberOfGuesses("words");
 //    cout << wordleSimulator.getResult("words", "sword");
 }
